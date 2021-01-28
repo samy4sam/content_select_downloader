@@ -118,7 +118,7 @@ class ContentSelectDownloader:
     def clean_up(files):
         print("Clean up.")
         for pdf in files:
-            os.system('rm ' + pdf)
+            os.system('del ' + pdf)
 
     def run(self):
         pdf_id = self.get_pdf_id(self.url)
