@@ -7,9 +7,9 @@
 import argparse
 import os
 import re
+import requests
 
 from bs4 import BeautifulSoup
-from requests_html import HTMLSession
 
 from PyPDF2 import PdfFileMerger
 
@@ -57,11 +57,9 @@ class ContentSelectDownloader:
     @staticmethod
     def get_chapter_ids(url):
         print("Get chapter ids.")
-        session = HTMLSession()
-        resp = session.get(url)
-        resp.html.render()
+        res = requests.get(url)
 
-        soup = BeautifulSoup(resp.html.html, "lxml")
+        soup = BeautifulSoup(res.content, "lxml")
         # outlineItems = soup.select("div.outlineItem a")
         print_list_items = soup.select("#printList a")
 
